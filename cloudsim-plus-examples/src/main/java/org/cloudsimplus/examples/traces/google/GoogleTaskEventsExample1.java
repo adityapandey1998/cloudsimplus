@@ -37,6 +37,7 @@ import org.cloudbus.cloudsim.resources.Pe;
 import org.cloudbus.cloudsim.resources.PeSimple;
 import org.cloudbus.cloudsim.schedulers.vm.VmScheduler;
 import org.cloudbus.cloudsim.schedulers.vm.VmSchedulerTimeShared;
+import org.cloudbus.cloudsim.schedulers.cloudlet.CloudletSchedulerCompletelyFair;
 import org.cloudbus.cloudsim.util.BytesConversion;
 import org.cloudbus.cloudsim.util.Conversion;
 import org.cloudbus.cloudsim.util.TimeUtil;
@@ -93,16 +94,19 @@ import static org.cloudbus.cloudsim.util.MathUtil.positive;
  *      Host specified in the trace file.
  */
 public class GoogleTaskEventsExample1 {
-    private static final String TASK_EVENTS_FILE = "workload/google-traces/task-events-sample-1.csv";
-    private static final String TASK_USAGE_FILE = "workload/google-traces/task-usage-sample-1.csv";
+    // private static final String TASK_EVENTS_FILE = "workload/google-traces/task-events-sample-1.csv";
+    // private static final String TASK_USAGE_FILE = "workload/google-traces/task-usage-sample-1.csv";
+
+    private static final String TASK_EVENTS_FILE = "google-trace-small/task_events/part-00001-of-00500.csv.gz";
+    private static final String TASK_USAGE_FILE = "google-trace-small/task_usage/part-00001-of-00500.csv";
 
     private static final int HOSTS = 10;
     private static final int VMS = 8;
     private static final int HOST_PES = 8;
-    private static final long HOST_RAM = 2048; //in Megabytes
-    private static final long HOST_BW = 10000; //in Megabits/s
+    private static final long HOST_RAM = 20480; //in Megabytes
+    private static final long HOST_BW = 100000; //in Megabits/s
     private static final long HOST_STORAGE = 1000000; //in Megabytes
-    private static final double HOST_MIPS = 1000;
+    private static final double HOST_MIPS = 50000;
 
     /**
      * Defines a negative length for Cloudlets created from the Google Task Events Trace file
@@ -110,7 +114,7 @@ public class GoogleTaskEventsExample1 {
      * event is received by the {@link DatacenterBroker}.
      * Check out {@link Cloudlet#setLength(long)} for details.
      */
-    private static final int  CLOUDLET_LENGTH = -10_000;
+    private static final int CLOUDLET_LENGTH = 10_000;
 
     /**
      * Max number of Cloudlets to create from the Google Task Events trace file.
@@ -119,9 +123,9 @@ public class GoogleTaskEventsExample1 {
     private static final int MAX_CLOUDLETS = 8;
 
     private static final long VM_PES = 4;
-    private static final int  VM_MIPS = 1000;
-    private static final long VM_RAM = 500; //in Megabytes
-    private static final long VM_BW = 100; //in Megabits/s
+    private static final int  VM_MIPS = 10000;
+    private static final long VM_RAM = 5000; //in Megabytes
+    private static final long VM_BW = 1000; //in Megabits/s
     private static final long VM_SIZE_MB = 1000; //in Megabytes
 
     private final CloudSim simulation;
@@ -223,7 +227,8 @@ public class GoogleTaskEventsExample1 {
         return new CloudletSimple(CLOUDLET_LENGTH, pesNumber)
             .setFileSize(sizeInBytes)
             .setOutputSize(sizeInBytes)
-            .setUtilizationModelBw(new UtilizationModelFull())
+            // .setUtilizationModelBw(new UtilizationModelFull())
+            .setUtilizationModelBw(new UtilizationModelDynamic(0, 100))
             .setUtilizationModelCpu(new UtilizationModelFull())
             .setUtilizationModelRam(utilizationRam);
     }
@@ -289,7 +294,8 @@ public class GoogleTaskEventsExample1 {
 
     private Vm createVm(final int id) {
         //Uses a CloudletSchedulerTimeShared by default
-        return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB);
+        return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB).setCloudletScheduler(new CloudletSchedulerCompletelyFair());
+        // return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB);
     }
 
     private void printCloudlets(final DatacenterBroker broker) {
