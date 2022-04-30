@@ -97,11 +97,11 @@ public class GoogleTaskEventsExample1 {
     // private static final String TASK_EVENTS_FILE = "workload/google-traces/task-events-sample-1.csv";
     // private static final String TASK_USAGE_FILE = "workload/google-traces/task-usage-sample-1.csv";
 
-    private static final String TASK_EVENTS_FILE = "/Users/adityapandey/Desktop/cloudsimplus/docs/subset_csvs/task-events.csv";
-    private static final String TASK_USAGE_FILE = "/Users/adityapandey/Desktop/cloudsimplus/docs/subset_csvs/task-usage.csv";
+    // private static final String TASK_EVENTS_FILE = "/Users/adityapandey/Desktop/cloudsimplus/docs/subset_csvs/task-events.csv";
+    // private static final String TASK_USAGE_FILE = "/Users/adityapandey/Desktop/cloudsimplus/docs/subset_csvs/task-usage.csv";
 
-    // private static final String TASK_EVENTS_FILE = "/Users/adityapandey/Desktop/cloudsimplus/task_events/sample_test.csv";
-    // private static final String TASK_USAGE_FILE = "/Users/adityapandey/Desktop/cloudsimplus/task_usage/sample_test.csv";
+    private static final String TASK_EVENTS_FILE = "/Users/adityapandey/Desktop/cloudsimplus/task_events/sample_of_10.csv";
+    private static final String TASK_USAGE_FILE = "/Users/adityapandey/Desktop/cloudsimplus/task_usage/sample_of_10.csv";
 
     // private static final String TASK_EVENTS_FILE = "google-trace-small/task_events/part-00001-of-00500.csv.gz";
     // private static final String TASK_USAGE_FILE = "google-trace-small/task_usage/part-00001-of-00500.csv";
@@ -149,6 +149,7 @@ public class GoogleTaskEventsExample1 {
         Log.setLevel(Level.TRACE);
 
         simulation = new CloudSim();
+        // simulation.minTimeBetweenEvents=0.0;
         datacenter = createDatacenter();
 
         createCloudletsAndBrokersFromTraceFile();

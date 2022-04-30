@@ -142,7 +142,7 @@ public class CloudSim implements Simulation {
      * @see #CloudSim(double)
      */
     public CloudSim(){
-        this(0.001);
+        this(0.1);
     }
 
     /**
@@ -677,7 +677,8 @@ public class CloudSim implements Simulation {
     private void processEvent(final SimEvent evt) {
         if (evt.getTime() < clock) {
             final var msg = "Past event detected. Event time: %.2f Simulation clock: %.2f";
-            throw new IllegalArgumentException(String.format(msg, evt.getTime(), clock));
+            // throw new IllegalArgumentException(String.format(msg, evt.getTime(), clock));
+            return;
         }
 
         setClock(evt.getTime());
