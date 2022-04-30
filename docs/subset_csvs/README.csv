@@ -1,0 +1,8 @@
+"This file contains spreadsheets showing the structure of tables (.csv files) from the Google Cluster Data.
+Each sheet is just a sample from the first file inside the subdirectory with the same name of the sheet itself."
+
+"For additional information and to download the original trace files, 
+check out https://github.com/google/cluster-data/blob/master/ClusterData2011_2.md "
+
+"These trace files can be read by CloudSim Plus using classes available at the org.cloudsimplus.traces.google package.
+Also check out the org.cloudsimplus.examples.googletraces package inside the examples module."
