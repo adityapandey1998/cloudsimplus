@@ -142,7 +142,7 @@ public class CloudSim implements Simulation {
      * @see #CloudSim(double)
      */
     public CloudSim(){
-        this(0.1);
+        this(0.001);
     }
 
     /**

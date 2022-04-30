@@ -97,8 +97,14 @@ public class GoogleTaskEventsExample1 {
     // private static final String TASK_EVENTS_FILE = "workload/google-traces/task-events-sample-1.csv";
     // private static final String TASK_USAGE_FILE = "workload/google-traces/task-usage-sample-1.csv";
 
-    private static final String TASK_EVENTS_FILE = "google-trace-small/task_events/part-00001-of-00500.csv.gz";
-    private static final String TASK_USAGE_FILE = "google-trace-small/task_usage/part-00001-of-00500.csv";
+    private static final String TASK_EVENTS_FILE = "/Users/adityapandey/Desktop/cloudsimplus/docs/subset_csvs/task-events.csv";
+    private static final String TASK_USAGE_FILE = "/Users/adityapandey/Desktop/cloudsimplus/docs/subset_csvs/task-usage.csv";
+
+    // private static final String TASK_EVENTS_FILE = "/Users/adityapandey/Desktop/cloudsimplus/task_events/sample_test.csv";
+    // private static final String TASK_USAGE_FILE = "/Users/adityapandey/Desktop/cloudsimplus/task_usage/sample_test.csv";
+
+    // private static final String TASK_EVENTS_FILE = "google-trace-small/task_events/part-00001-of-00500.csv.gz";
+    // private static final String TASK_USAGE_FILE = "google-trace-small/task_usage/part-00001-of-00500.csv";
 
     private static final int HOSTS = 10;
     private static final int VMS = 8;
@@ -294,8 +300,8 @@ public class GoogleTaskEventsExample1 {
 
     private Vm createVm(final int id) {
         //Uses a CloudletSchedulerTimeShared by default
-        return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB).setCloudletScheduler(new CloudletSchedulerCompletelyFair());
-        // return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB);
+        // return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB).setCloudletScheduler(new CloudletSchedulerCompletelyFair());
+        return new VmSimple(VM_MIPS, VM_PES).setRam(VM_RAM).setBw(VM_BW).setSize(VM_SIZE_MB);
     }
 
     private void printCloudlets(final DatacenterBroker broker) {
